@@ -1,0 +1,6 @@
+---
+# tasks file for roles/oracle-base
+- name: include install_oracle_depend.yml
+  include: install_oracle_depend.yml
+- name: include configure.yml
+  include: configure.yml

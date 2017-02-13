@@ -1,0 +1,44 @@
+---
+- name: create oracle system group
+  group:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - oinstall
+    - dba
+    - oracle
+
+- name: create oracle system user
+  user:
+    name: oracle
+    group: oinstall
+    groups: dba,oracle
+    state: present
+
+- name: create oracle home directory
+  file:
+    name: "{{ oracle_home }}"
+    recurse: yes
+    owner: oracle
+    mode: 0755
+    group: oinstall
+    state: directory
+
+- name: create oracle environment variables
+  lineinfile:
+    dest: /home/oracle/.bash_profile
+    line: "{{ item.name }}={{ item.value }}"
+    regexp: '^{{ item.name }}\s*=\s*.+$'
+    state: present
+  with_items: "{{ oracle_environment_list }}"
+  
+- name: optmize sysctl.conf setting
+  lineinfile:
+    dest: /etc/sysctl.conf
+    line: "{{ item.name }} = {{ item.value }}"
+    regexp: '^{{ item.name }}\s+=\s+.*$'
+    state: present
+  with_items: "{{ sysctl_param }}"
+
+- name: enable sysctl tcpip setting
+  shell: sysctl -p

@@ -1,0 +1,25 @@
+---
+- name: install oracle dependency package
+  yum:
+    name: "{{ item }}"
+    state: present
+    update_cache: no
+  with_items:
+    - binutils
+    - elfutils-libelf
+    - elfutils-libelf-devel
+    - gcc
+    - gcc-c++
+    - glibc
+    - glibc-common
+    - glibc-devel
+    - glibc-headers
+    - libaio-devel
+    - libaio
+    - libgcc
+    - libstdc++
+    - libstdc++-devel
+    - make
+    - sysstat
+    - unixODBC
+    - unixODBC-devel

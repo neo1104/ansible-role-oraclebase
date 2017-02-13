@@ -17,12 +17,16 @@
 
 - name: create oracle home directory
   file:
-    name: "{{ oracle_home }}"
+    name: "{{ item }}"
     recurse: yes
     owner: oracle
-    mode: 0755
+    mode: 0775
     group: oinstall
     state: directory
+  with_items:
+    - "{{ oracle_home }}"
+    - "{{ oracle_inventroy_path }}"
+    - "{{ oracle_oradata_path }}"
 
 - name: create oracle environment variables
   lineinfile:

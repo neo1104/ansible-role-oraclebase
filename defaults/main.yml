@@ -1,7 +1,9 @@
 ---
 # defaults file for roles/oracle-base
-oracle_base: /home/u01/app
-oracle_home: "{{ oracle_base }}/oracle/product/11.2.0/dbhome_1"
+oracle_base: /home/u01/app/oracle
+oracle_home: "{{ oracle_base }}/product/11.2.0/dbhome_1"
+oracle_inventroy_path: "{{ oracle_base }}/oraInventory"
+oracle_oradata_path: "{{ oracle_base }}/oradata"
 oracle_sid: orcl
 oracle_lang: "\"SIMPLIFIED CHINESE_CHINA.AL32UTF\""
 oracle_path: "$ORACLE_HOME/bin:$PATH"

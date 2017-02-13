@@ -31,7 +31,13 @@
     regexp: '^{{ item.name }}\s*=\s*.+$'
     state: present
   with_items: "{{ oracle_environment_list }}"
-  
+
+- name: export PATH environment variable
+  lineinfile:
+    dest: /home/oracle/.bash_profile
+    line: "export PATH=$ORACLE_HOME/bin:$PATH"
+    state: present
+
 - name: optmize sysctl.conf setting
   lineinfile:
     dest: /etc/sysctl.conf

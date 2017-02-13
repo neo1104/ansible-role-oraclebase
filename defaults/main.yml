@@ -1,16 +1,16 @@
 ---
 # defaults file for roles/oracle-base
-oracle_base: /home/u01/app/oracle
-oracle_home: "{{ oracle_base }}/product/11.2.0"
+oracle_base: /home/u01/app
+oracle_home: "{{ oracle_base }}/oracle/product/11.2.0/dbhome_1"
 oracle_sid: orcl
 oracle_lang: "\"SIMPLIFIED CHINESE_CHINA.AL32UTF\""
+oracle_path: "$ORACLE_HOME/bin:$PATH"
 
 oracle_environment_list:
-  - {name: ORACLE_BASE, value: "{{ oracle_base }}" }
-  - {name: ORACLE_HOME, value: "{{ oracle_home }}" }
-  - {name: ORACLE_SID, value: "{{ oracle_sid }}" }
-  - {name: NLS_LANG, value: "{{ oracle_lang }}" }
-
+  - {name: export ORACLE_BASE, value: "{{ oracle_base }}" }
+  - {name: export ORACLE_HOME, value: "{{ oracle_home }}" }
+  - {name: export ORACLE_SID, value: "{{ oracle_sid }}" }
+  - {name: export NLS_LANG, value: "{{ oracle_lang }}" }
 
 kernel_shmall: 2097152
 kernel_shmmax: 2147483648
